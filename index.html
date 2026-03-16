@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiwi | Software Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #fafafa;
+    --bg-card: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --accent: #1a1a1a;
+    --border: #e8e8e8;
+    --border-hover: #ccc;
+    --tag-bg: #f2f2f2;
+    --link: #0055ff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  a { color: var(--text); }
+
+  /* === NAV === */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(250, 250, 250, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 720px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    height: 52px; padding: 0 1.5rem;
+  }
+  .nav-logo {
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 0.84rem; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* === LAYOUT === */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* === HERO === */
+  .hero {
+    padding: 10rem 1.5rem 5rem;
+    max-width: 720px; margin: 0 auto;
+  }
+  .hero-name {
+    font-size: 2.2rem; font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.8rem;
+  }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--text-secondary);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+  }
+  .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .hero-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.84rem;
+    padding-bottom: 1px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .hero-links a:hover {
+    color: var(--text);
+    border-bottom-color: var(--text);
+  }
+
+  /* === SECTIONS === */
+  section { padding: 3.5rem 0; }
+  .section-header {
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* === ABOUT === */
+  .about-text {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    margin-bottom: 2.5rem;
+    max-width: 580px;
+  }
+
+  .edu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-left {}
+  .edu-school { font-weight: 500; font-size: 0.94rem; }
+  .edu-degree {
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    margin-top: 0.15rem;
+  }
+  .edu-date {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* === SKILLS === */
+  .skills-row {
+    display: flex; flex-wrap: wrap; gap: 0.45rem;
+    margin-top: 1.5rem;
+  }
+  .skill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    background: var(--tag-bg);
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+  }
+  .skill:hover { color: var(--text); }
+
+  /* === PROJECTS === */
+  .project {
+    padding: 1.6rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .project:last-child { border-bottom: none; }
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-weight: 500; font-size: 1rem;
+    letter-spacing: -0.01em;
+  }
+  .project-links { display: flex; gap: 1rem; }
+  .project-links a {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .project-links a:hover { color: var(--link); }
+  .project-desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 0.8rem;
+    max-width: 580px;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-tags span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+  }
+
+  /* === FOOTER === */
+  footer {
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+  }
+  footer a { color: var(--text-secondary); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  /* === DIVIDER === */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .hero { padding: 8rem 1.5rem 3rem; }
+    .hero-name { font-size: 1.8rem; }
+    .edu-item { flex-direction: column; gap: 0.2rem; }
+    .project-top { flex-direction: column; gap: 0.3rem; }
+    .nav-links { gap: 1.2rem; }
+  }
+
+  /* === SUBTLE FADE-IN === */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * {
+    animation: fadeIn 0.5s ease-out backwards;
+  }
+  .hero > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero > *:nth-child(2) { animation-delay: 0.1s; }
+  .hero > *:nth-child(3) { animation-delay: 0.15s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Linxuan Chen</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="mailto:linxuanc@usc.edu">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1 class="hero-name">Linxuan Chen</h1>
+  <p class="hero-desc">
+    Software engineer studying CS at USC. Edinburgh AI graduate.
+    I build full-stack applications and care about clean, thoughtful systems.
+  </p>
+  <div class="hero-links">
+    <a href="https://github.com/LynnUoE" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/lynn-chen-linxuan-uoe/" target="_blank">LinkedIn</a>
+    <a href="mailto:linxuanc@usc.edu">Email</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-header">About</div>
+    <p class="about-text">
+      I'm currently pursuing my MS in Computer Science at the University of Southern California.
+      Before that, I completed my BSc in Artificial Intelligence at the University of Edinburgh.
+      My work spans backend systems, data pipelines, and modern web applications&mdash;I enjoy
+      turning complex problems into well-structured software.
+    </p>
+
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-school">University of Southern California</div>
+        <div class="edu-degree">MS Computer Science</div>
+      </div>
+      <div class="edu-date">2025 &ndash; 2027</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-school">University of Edinburgh</div>
+        <div class="edu-degree">BSc Artificial Intelligence</div>
+      </div>
+      <div class="edu-date">2021 &ndash; 2025</div>
+    </div>
+
+    <div class="skills-row">
+      <span class="skill">Java</span>
+      <span class="skill">Python</span>
+      <span class="skill">JavaScript</span>
+      <span class="skill">TypeScript</span>
+      <span class="skill">React</span>
+      <span class="skill">Node.js</span>
+      <span class="skill">Spring Boot</span>
+      <span class="skill">MySQL</span>
+      <span class="skill">MongoDB</span>
+      <span class="skill">GCP</span>
+      <span class="skill">Docker</span>
+      <span class="skill">Git</span>
+      <span class="skill">PyTorch</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header">Projects</div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">Ticketmaster Event Search</div>
+        <div class="project-links">
+          <a href="https://github.com/LynnUoE/event-around-mobile-app" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Full-stack event discovery app with real-time search and favorites.
+        React frontend with Express backend serving the Ticketmaster API,
+        deployed on Google Cloud Platform.
+      </p>
+      <div class="project-tags">
+        <span>React</span>
+        <span>Node.js</span>
+        <span>Express</span>
+        <span>MongoDB</span>
+        <span>GCP</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">DQN Material Cutting Optimization</div>
+        <div class="project-links">
+          <a href="https://doi.org/10.1051/itmconf/20257301002" target="_blank">Paper</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Published research on sustainable material cutting using Graph Neural Networks
+        and Deep Reinforcement Learning. Novel approach to waste reduction through
+        learned state representations.
+      </p>
+      <div class="project-tags">
+        <span>Python</span>
+        <span>PyTorch</span>
+        <span>DQN</span>
+        <span>GNN</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">Supply Chain Optimization with Deep RL</div>
+        <div class="project-links">
+          <a href="https://github.com/LynnUoE/Optimizing-Supply-Chain-Decision-Through-Reinforcement-Learning" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Hybrid framework combining Deep Reinforcement Learning with Multi-Stage
+        Stochastic Programming for inventory management under demand uncertainty.
+        Implemented PPO and A3C algorithms, deployed on Google Cloud Platform.
+      </p>
+      <div class="project-tags">
+        <span>Python</span>
+        <span>TensorFlow</span>
+        <span>PPO</span>
+        <span>A3C</span>
+        <span>GCP</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div class="project-title">LLM-Based Academic Expert Discovery</div>
+        <div class="project-links">
+          <a href="https://github.com/LynnUoE/om-dissertation-implementation" target="_blank">GitHub</a>
+        </div>
+      </div>
+      <p class="project-desc">
+        Undergraduate dissertation project integrating GPT-4o with the OpenAlex
+        academic database to discover research expertise. Features semantic query
+        analysis, intelligent literature retrieval, and HDBSCAN-based topic clustering.
+      </p>
+      <div class="project-tags">
+        <span>Python</span>
+        <span>Flask</span>
+        <span>GPT-4o</span>
+        <span>OpenAlex API</span>
+        <span>HDBSCAN</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Linxuan Chen &middot; <a href="mailto:linxuanc@usc.edu">linxuanc@usc.edu</a> &middot; 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
