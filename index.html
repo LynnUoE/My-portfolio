@@ -4,400 +4,1016 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Linxuan Chen | Software Engineer</title>
+<meta name="description" content="Linxuan Chen — software engineer. MS Computer Science at USC, BSc Artificial Intelligence at the University of Edinburgh. Full-stack applications, machine learning, and well-structured systems.">
+<meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0b0a" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Linxuan Chen | Software Engineer">
+<meta property="og:description" content="MS Computer Science at USC · BSc Artificial Intelligence at Edinburgh. Full-stack applications, machine learning, and well-structured systems.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%231a1816'/><text x='50' y='50' dy='.35em' text-anchor='middle' font-family='Georgia,serif' font-size='56' fill='%23f4f1ec'>L</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script>
+  // Apply the stored theme before first paint so there is no flash.
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap');
-
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+  /* ============================================================
+     TOKENS
+     ============================================================ */
   :root {
-    --bg: #fafafa;
-    --bg-card: #ffffff;
-    --text: #1a1a1a;
-    --text-secondary: #666;
-    --text-muted: #999;
-    --accent: #1a1a1a;
-    --border: #e8e8e8;
-    --border-hover: #ccc;
-    --tag-bg: #f2f2f2;
-    --link: #0055ff;
+    --maxw: 1060px;
+    --rail: 190px;
+
+    --bg: #faf9f7;
+    --bg-2: #f3f1ed;
+    --surface: #ffffff;
+    --text: #1a1816;
+    --text-2: #5a554f;
+    --text-3: #8d877f;
+    --line: rgba(26, 24, 22, 0.10);
+    --line-strong: rgba(26, 24, 22, 0.22);
+    --accent: #a3512b;
+    --accent-soft: rgba(163, 81, 43, 0.09);
+    --shadow: 0 1px 2px rgba(26, 24, 22, 0.04), 0 18px 40px -22px rgba(26, 24, 22, 0.22);
+    --grain: 0.030;
+    --glow-1: rgba(163, 81, 43, 0.10);
+    --glow-2: rgba(80, 100, 140, 0.08);
+
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  html { scroll-behavior: smooth; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c0b0a;
+      --bg-2: #141210;
+      --surface: #141210;
+      --text: #f4f1ec;
+      --text-2: #a7a099;
+      --text-3: #726b64;
+      --line: rgba(244, 241, 236, 0.11);
+      --line-strong: rgba(244, 241, 236, 0.26);
+      --accent: #e0a458;
+      --accent-soft: rgba(224, 164, 88, 0.11);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 22px 44px -24px rgba(0, 0, 0, 0.8);
+      --grain: 0.055;
+      --glow-1: rgba(224, 164, 88, 0.10);
+      --glow-2: rgba(96, 124, 176, 0.10);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #0c0b0a;
+    --bg-2: #141210;
+    --surface: #141210;
+    --text: #f4f1ec;
+    --text-2: #a7a099;
+    --text-3: #726b64;
+    --line: rgba(244, 241, 236, 0.11);
+    --line-strong: rgba(244, 241, 236, 0.26);
+    --accent: #e0a458;
+    --accent-soft: rgba(224, 164, 88, 0.11);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 22px 44px -24px rgba(0, 0, 0, 0.8);
+    --grain: 0.055;
+    --glow-1: rgba(224, 164, 88, 0.10);
+    --glow-2: rgba(96, 124, 176, 0.10);
+  }
+
+  /* ============================================================
+     BASE
+     ============================================================ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
     background: var(--bg);
     color: var(--text);
     line-height: 1.65;
+    letter-spacing: -0.005em;
+    font-feature-settings: 'cv11' 1, 'ss01' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-  a { color: var(--text); }
+  /* Ambient light behind everything */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(70ch 52ch at 12% -8%, var(--glow-1), transparent 62%),
+      radial-gradient(60ch 44ch at 92% 4%, var(--glow-2), transparent 60%);
+  }
 
-  /* === NAV === */
+  /* Fine film grain — gives flat colour a bit of material */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    z-index: 9998;
+    pointer-events: none;
+    opacity: var(--grain);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  h1, h2, h3 { text-wrap: balance; font-weight: 500; }
+  p { text-wrap: pretty; }
+
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-variant-ligatures: none;
+  }
+
+  /* ============================================================
+     SCROLL PROGRESS
+     ============================================================ */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 100%;
+    z-index: 200;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    opacity: 0.85;
+  }
+
+  /* ============================================================
+     NAV
+     ============================================================ */
   nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(250, 250, 250, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+  }
+  nav.scrolled {
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border-bottom-color: var(--line);
   }
   .nav-inner {
-    max-width: 720px; margin: 0 auto;
-    display: flex; justify-content: space-between; align-items: center;
-    height: 52px; padding: 0 1.5rem;
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
-  .nav-logo {
-    font-weight: 600; font-size: 0.95rem;
-    text-decoration: none; color: var(--text);
-    letter-spacing: -0.02em;
-  }
-  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
-  .nav-links a {
-    color: var(--text-secondary); text-decoration: none;
-    font-size: 0.84rem; font-weight: 400;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
 
-  /* === LAYOUT === */
-  .container { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
-
-  /* === HERO === */
-  .hero {
-    padding: 10rem 1.5rem 5rem;
-    max-width: 720px; margin: 0 auto;
-  }
-  .hero-name {
-    font-size: 2.2rem; font-weight: 600;
-    letter-spacing: -0.03em;
-    margin-bottom: 0.8rem;
-  }
-  .hero-desc {
-    font-size: 1.05rem; color: var(--text-secondary);
-    max-width: 500px;
-    line-height: 1.7;
-    margin-bottom: 1.8rem;
-  }
-  .hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .hero-links a {
-    color: var(--text-muted); text-decoration: none;
-    font-size: 0.84rem;
-    padding-bottom: 1px;
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s;
-  }
-  .hero-links a:hover {
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
     color: var(--text);
-    border-bottom-color: var(--text);
   }
-
-  /* === SECTIONS === */
-  section { padding: 3.5rem 0; }
-  .section-header {
-    font-size: 0.72rem;
+  .brand-mark {
+    width: 26px; height: 26px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: 7px;
+    background: var(--text);
+    color: var(--bg);
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 0.95rem;
+    line-height: 1;
+    padding-bottom: 1px;
+    transition: transform 0.4s var(--ease);
+  }
+  .brand:hover .brand-mark { transform: rotate(-6deg) scale(1.06); }
+  .brand-name {
+    font-size: 0.9rem;
     font-weight: 500;
+    letter-spacing: -0.015em;
+    white-space: nowrap;
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 1.6rem; }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a {
+    position: relative;
+    color: var(--text-3);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.01em;
+    transition: color 0.25s var(--ease);
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -5px;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition: transform 0.4s var(--ease);
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--text); }
+  .nav-links a:hover::after,
+  .nav-links a.active::after { transform: scaleX(1); transform-origin: 0 50%; }
+
+  .theme-toggle {
+    width: 34px; height: 34px;
+    display: grid; place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: transparent;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: color 0.25s var(--ease), border-color 0.25s var(--ease), background 0.25s var(--ease);
+  }
+  .theme-toggle:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    background: var(--accent-soft);
+  }
+  .theme-toggle svg { width: 15px; height: 15px; }
+  .icon-moon { display: none; }
+  :root[data-theme="dark"] .icon-sun { display: none; }
+  :root[data-theme="dark"] .icon-moon { display: block; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-sun { display: none; }
+    :root:not([data-theme="light"]) .icon-moon { display: block; }
+  }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 13rem 2rem 7rem;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: 2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.36rem 0.85rem 0.36rem 0.7rem;
+    background: color-mix(in srgb, var(--surface) 55%, transparent);
+    margin-bottom: 2.2rem;
+  }
+  .status-dot {
+    position: relative;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: none;
+  }
+  .status-dot::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    opacity: 0;
+    animation: pulse 2.8s var(--ease) infinite;
+  }
+  @keyframes pulse {
+    0%   { opacity: 0.7; transform: scale(0.6); }
+    70%  { opacity: 0;   transform: scale(1.5); }
+    100% { opacity: 0;   transform: scale(1.5); }
   }
 
-  /* === ABOUT === */
-  .about-text {
-    color: var(--text-secondary);
-    font-size: 0.94rem;
-    margin-bottom: 2.5rem;
-    max-width: 580px;
+  .hero-name {
+    font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: clamp(3.4rem, 9.5vw, 6.4rem);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.6rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
   }
 
+  .hero-desc {
+    font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+    line-height: 1.6;
+    color: var(--text-2);
+    max-width: 34ch;
+    letter-spacing: -0.012em;
+    margin-bottom: 2.6rem;
+  }
+  .hero-desc strong {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .hero-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.83rem;
+    text-decoration: none;
+    color: var(--text-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.48rem 1rem;
+    background: color-mix(in srgb, var(--surface) 55%, transparent);
+    transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+                transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+  .pill svg {
+    width: 11px; height: 11px;
+    opacity: 0.55;
+    transition: transform 0.35s var(--ease), opacity 0.3s var(--ease);
+  }
+  .pill:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .pill:hover svg { transform: translate(2px, -2px); opacity: 1; }
+
+  .scroll-cue {
+    margin-top: 5.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .scroll-cue::before {
+    content: '';
+    width: 46px; height: 1px;
+    background: linear-gradient(90deg, var(--line-strong), transparent);
+  }
+
+  /* ============================================================
+     SECTIONS — editorial two-column grid
+     ============================================================ */
+  section { padding: 5.5rem 0; scroll-margin-top: 80px; }
+
+  .sec-grid {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .sec-rail { position: sticky; top: 7rem; }
+  .sec-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+  }
+  .sec-num { color: var(--accent); }
+  .sec-rail-line {
+    margin-top: 1.1rem;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--line-strong), transparent);
+  }
+
+  .sec-body { max-width: 640px; }
+
+  .lede {
+    font-size: 1.02rem;
+    color: var(--text-2);
+    line-height: 1.75;
+    margin-bottom: 3rem;
+  }
+  .lede strong { color: var(--text); font-weight: 500; }
+
+  .block-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 1rem;
+  }
+
+  /* ---- Education --------------------------------------------- */
   .edu-item {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 0.9rem 0;
-    border-bottom: 1px solid var(--border);
+    gap: 1.5rem;
+    padding: 1.05rem 0;
+    border-top: 1px solid var(--line);
+    transition: padding-left 0.4s var(--ease);
   }
-  .edu-item:last-child { border-bottom: none; }
-  .edu-left {}
-  .edu-school { font-weight: 500; font-size: 0.94rem; }
-  .edu-degree {
-    color: var(--text-secondary);
-    font-size: 0.84rem;
-    margin-top: 0.15rem;
-  }
+  .edu-item:last-of-type { border-bottom: 1px solid var(--line); }
+  .edu-item:hover { padding-left: 0.6rem; }
+  .edu-school { font-weight: 500; font-size: 0.97rem; letter-spacing: -0.01em; }
+  .edu-degree { color: var(--text-2); font-size: 0.86rem; margin-top: 0.1rem; }
   .edu-date {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    white-space: nowrap;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  /* === SKILLS === */
-  .skills-row {
-    display: flex; flex-wrap: wrap; gap: 0.45rem;
-    margin-top: 1.5rem;
-  }
-  .skill {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    color: var(--text-3);
     font-size: 0.76rem;
-    color: var(--text-secondary);
-    background: var(--tag-bg);
-    padding: 0.3rem 0.7rem;
-    border-radius: 4px;
-    transition: color 0.2s;
+    white-space: nowrap;
+    transition: color 0.3s var(--ease);
   }
-  .skill:hover { color: var(--text); }
+  .edu-item:hover .edu-date { color: var(--accent); }
 
-  /* === PROJECTS === */
-  .project {
-    padding: 1.6rem 0;
-    border-bottom: 1px solid var(--border);
+  /* ---- Skills ------------------------------------------------- */
+  .skills { margin-top: 3rem; }
+  .skills-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.74rem;
+    color: var(--text-2);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.32rem 0.7rem;
+    background: color-mix(in srgb, var(--surface) 45%, transparent);
+    transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+                background 0.25s var(--ease), transform 0.25s var(--ease);
   }
-  .project:last-child { border-bottom: none; }
-  .project-top {
+  .skill:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+  }
+
+  /* ---- Projects ----------------------------------------------- */
+  .projects { border-top: 1px solid var(--line); }
+
+  .project {
+    position: relative;
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 1.4rem;
+    padding: 1.9rem 0;
+    border-bottom: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    isolation: isolate;
+  }
+  .project::before {
+    content: '';
+    position: absolute;
+    inset: 0.5rem -1.25rem;
+    z-index: -1;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    opacity: 0;
+    transform: scale(0.985);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .project:hover::before { opacity: 1; transform: scale(1); }
+
+  .p-num {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--text-3);
+    padding-top: 0.32rem;
+    transition: color 0.3s var(--ease);
+  }
+  .project:hover .p-num { color: var(--accent); }
+
+  .p-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 0.5rem;
+    gap: 1.2rem;
+    margin-bottom: 0.55rem;
   }
-  .project-title {
-    font-weight: 500; font-size: 1rem;
-    letter-spacing: -0.01em;
+  .p-title {
+    font-size: 1.12rem;
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    transition: color 0.3s var(--ease);
   }
-  .project-links { display: flex; gap: 1rem; }
-  .project-links a {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .project-links a:hover { color: var(--link); }
-  .project-desc {
-    color: var(--text-secondary);
-    font-size: 0.88rem;
-    line-height: 1.65;
-    margin-bottom: 0.8rem;
-    max-width: 580px;
-  }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .project-tags span {
-    font-family: 'JetBrains Mono', monospace;
+  .project:hover .p-title { color: var(--accent); }
+
+  .p-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: none;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.7rem;
-    color: var(--text-muted);
-    background: var(--tag-bg);
-    padding: 0.2rem 0.55rem;
-    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    transition: color 0.3s var(--ease);
+  }
+  .p-cta svg {
+    width: 11px; height: 11px;
+    transition: transform 0.35s var(--ease);
+  }
+  .project:hover .p-cta { color: var(--accent); }
+  .project:hover .p-cta svg { transform: translate(3px, -3px); }
+
+  .p-desc {
+    color: var(--text-2);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 0.95rem;
+    max-width: 56ch;
+  }
+  .p-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; list-style: none; }
+  .p-tags li {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    color: var(--text-3);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 0.16rem 0.5rem;
   }
 
-  /* === FOOTER === */
+  /* ---- Contact ------------------------------------------------ */
+  .contact-line {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1.9rem, 4.6vw, 3.1rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin-bottom: 2rem;
+  }
+  .mail-link {
+    position: relative;
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .mail-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0.06em;
+    width: 100%; height: 1px;
+    background: currentColor;
+    opacity: 0.35;
+    transform-origin: 0 50%;
+    transition: transform 0.45s var(--ease), opacity 0.3s var(--ease), background 0.3s var(--ease);
+  }
+  .mail-link:hover { color: var(--accent); }
+  .mail-link:hover::after { opacity: 1; transform: scaleX(1.02); }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
   footer {
-    padding: 3rem 0;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.78rem;
+    border-top: 1px solid var(--line);
+    margin-top: 3rem;
   }
-  footer a { color: var(--text-secondary); text-decoration: none; }
-  footer a:hover { color: var(--text); }
+  .footer-inner {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 2.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--text-3);
+  }
+  .footer-links { display: flex; gap: 1.3rem; }
+  .footer-links a {
+    color: var(--text-3);
+    text-decoration: none;
+    transition: color 0.25s var(--ease);
+  }
+  .footer-links a:hover { color: var(--text); }
 
-  /* === DIVIDER === */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: var(--border);
+  /* ============================================================
+     MOTION
+     ============================================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.85s var(--ease), transform 0.85s var(--ease);
+    transition-delay: var(--d, 0s);
   }
+  .reveal.in { opacity: 1; transform: none; }
 
-  /* === RESPONSIVE === */
-  @media (max-width: 600px) {
-    .hero { padding: 8rem 1.5rem 3rem; }
-    .hero-name { font-size: 1.8rem; }
-    .edu-item { flex-direction: column; gap: 0.2rem; }
-    .project-top { flex-direction: column; gap: 0.3rem; }
-    .nav-links { gap: 1.2rem; }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
   }
-
-  /* === SUBTLE FADE-IN === */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero > * {
-    animation: fadeIn 0.5s ease-out backwards;
-  }
+  .hero > * { animation: riseIn 0.9s var(--ease) backwards; }
   .hero > *:nth-child(1) { animation-delay: 0.05s; }
-  .hero > *:nth-child(2) { animation-delay: 0.1s; }
-  .hero > *:nth-child(3) { animation-delay: 0.15s; }
+  .hero > *:nth-child(2) { animation-delay: 0.14s; }
+  .hero > *:nth-child(3) { animation-delay: 0.23s; }
+  .hero > *:nth-child(4) { animation-delay: 0.32s; }
+  .hero > *:nth-child(5) { animation-delay: 0.44s; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 860px) {
+    .sec-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+    .sec-rail { position: static; }
+    .sec-rail-line { margin-top: 0.9rem; }
+    .hero { padding: 10rem 2rem 5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .container, .nav-inner, .hero, .footer-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .nav-inner { height: 60px; }
+    .brand-name { display: none; }
+    .nav-links { gap: 1.1rem; }
+    .nav-right { gap: 1.1rem; }
+    .hero { padding-top: 9rem; padding-bottom: 4rem; }
+    .hero-desc { max-width: 100%; }
+    .scroll-cue { margin-top: 3.5rem; }
+    section { padding: 3.5rem 0; }
+    .project { grid-template-columns: 1fr; gap: 0.5rem; }
+    .p-num { padding-top: 0; }
+    .p-head { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+    .edu-item { flex-direction: column; gap: 0.25rem; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+  }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
+<div class="progress" id="progress"></div>
+
+<!-- ===================== NAV ===================== -->
+<nav id="nav">
   <div class="nav-inner">
-    <a href="#" class="nav-logo">Linxuan Chen</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="mailto:linxuanc@usc.edu">Contact</a></li>
-    </ul>
+    <a href="#top" class="brand">
+      <span class="brand-mark">L</span>
+      <span class="brand-name">Linxuan Chen</span>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.4v2.2M12 19.4v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.4 12h2.2M19.4 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.2A8.6 8.6 0 1 1 9.8 3.5a6.9 6.9 0 0 0 10.7 10.7Z"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <h1 class="hero-name">Linxuan Chen</h1>
+<!-- ===================== HERO ===================== -->
+<header class="hero" id="top">
+  <div class="status">
+    <span class="status-dot" aria-hidden="true"></span>
+    MS CS &middot; USC &middot; 2025&ndash;27
+  </div>
+
+  <h1 class="hero-name">Linxuan<br>Chen<em>.</em></h1>
+
   <p class="hero-desc">
-    Software engineer studying CS at USC. Edinburgh AI graduate.
+    Software engineer studying CS at <strong>USC</strong>. <strong>Edinburgh</strong> AI graduate.
     I build full-stack applications and care about clean, thoughtful systems.
   </p>
-  <div class="hero-links">
-    <a href="https://github.com/LynnUoE" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/lynn-chen-linxuan-uoe/" target="_blank">LinkedIn</a>
-    <a href="mailto:linxuanc@usc.edu">Email</a>
-  </div>
-</div>
 
-<!-- ABOUT -->
+  <div class="hero-links">
+    <a class="pill" href="https://github.com/LynnUoE" target="_blank" rel="noopener noreferrer">
+      GitHub
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+    </a>
+    <a class="pill" href="https://www.linkedin.com/in/lynn-chen-linxuan-uoe/" target="_blank" rel="noopener noreferrer">
+      LinkedIn
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+    </a>
+    <a class="pill" href="mailto:linxuanc@usc.edu">
+      Email
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+    </a>
+  </div>
+
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<!-- ===================== ABOUT ===================== -->
 <section id="about">
   <div class="container">
-    <div class="section-header">About</div>
-    <p class="about-text">
-      I'm currently pursuing my MS in Computer Science at the University of Southern California.
-      Before that, I completed my BSc in Artificial Intelligence at the University of Edinburgh.
-      My work spans backend systems, data pipelines, and modern web applications&mdash;I enjoy
-      turning complex problems into well-structured software.
-    </p>
-
-    <div class="edu-item">
-      <div class="edu-left">
-        <div class="edu-school">University of Southern California</div>
-        <div class="edu-degree">MS Computer Science</div>
+    <div class="sec-grid">
+      <div class="sec-rail reveal">
+        <div class="sec-label"><span class="sec-num">01</span> About</div>
+        <div class="sec-rail-line"></div>
       </div>
-      <div class="edu-date">2025 &ndash; 2027</div>
-    </div>
-    <div class="edu-item">
-      <div class="edu-left">
-        <div class="edu-school">University of Edinburgh</div>
-        <div class="edu-degree">BSc Artificial Intelligence</div>
-      </div>
-      <div class="edu-date">2021 &ndash; 2025</div>
-    </div>
 
-    <div class="skills-row">
-      <span class="skill">Java</span>
-      <span class="skill">Python</span>
-      <span class="skill">JavaScript</span>
-      <span class="skill">TypeScript</span>
-      <span class="skill">React</span>
-      <span class="skill">Node.js</span>
-      <span class="skill">Spring Boot</span>
-      <span class="skill">MySQL</span>
-      <span class="skill">MongoDB</span>
-      <span class="skill">GCP</span>
-      <span class="skill">Docker</span>
-      <span class="skill">Git</span>
-      <span class="skill">PyTorch</span>
+      <div class="sec-body">
+        <p class="lede reveal">
+          I'm currently pursuing my <strong>MS in Computer Science</strong> at the University of
+          Southern California. Before that, I completed my <strong>BSc in Artificial Intelligence</strong>
+          at the University of Edinburgh. My work spans backend systems, data pipelines, and modern
+          web applications&mdash;I enjoy turning complex problems into well-structured software.
+        </p>
+
+        <div class="reveal" style="--d:.06s">
+          <div class="block-title">Education</div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-school">University of Southern California</div>
+              <div class="edu-degree">MS Computer Science</div>
+            </div>
+            <div class="edu-date">2025 &ndash; 2027</div>
+          </div>
+          <div class="edu-item">
+            <div>
+              <div class="edu-school">University of Edinburgh</div>
+              <div class="edu-degree">BSc Artificial Intelligence</div>
+            </div>
+            <div class="edu-date">2021 &ndash; 2025</div>
+          </div>
+        </div>
+
+        <div class="skills reveal" style="--d:.12s">
+          <div class="block-title">Toolkit</div>
+          <div class="skills-row">
+            <span class="skill">Java</span>
+            <span class="skill">Python</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">TypeScript</span>
+            <span class="skill">React</span>
+            <span class="skill">Node.js</span>
+            <span class="skill">Spring Boot</span>
+            <span class="skill">MySQL</span>
+            <span class="skill">MongoDB</span>
+            <span class="skill">GCP</span>
+            <span class="skill">Docker</span>
+            <span class="skill">Git</span>
+            <span class="skill">PyTorch</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- ===================== PROJECTS ===================== -->
 <section id="projects">
   <div class="container">
-    <div class="section-header">Projects</div>
+    <div class="sec-grid">
+      <div class="sec-rail reveal">
+        <div class="sec-label"><span class="sec-num">02</span> Projects</div>
+        <div class="sec-rail-line"></div>
+      </div>
 
-    <div class="project">
-      <div class="project-top">
-        <div class="project-title">Ticketmaster Event Search</div>
-        <div class="project-links">
-          <a href="https://github.com/LynnUoE/event-around-mobile-app" target="_blank">GitHub</a>
+      <div class="sec-body">
+        <div class="projects">
+
+          <a class="project reveal" href="https://github.com/LynnUoE/event-around-mobile-app" target="_blank" rel="noopener noreferrer">
+            <div class="p-num">01</div>
+            <div>
+              <div class="p-head">
+                <h3 class="p-title">Ticketmaster Event Search</h3>
+                <span class="p-cta">GitHub
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                </span>
+              </div>
+              <p class="p-desc">
+                Full-stack event discovery app with real-time search and favorites.
+                React frontend with Express backend serving the Ticketmaster API,
+                deployed on Google Cloud Platform.
+              </p>
+              <ul class="p-tags">
+                <li>React</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>GCP</li>
+              </ul>
+            </div>
+          </a>
+
+          <a class="project reveal" style="--d:.06s" href="https://doi.org/10.1051/itmconf/20257301002" target="_blank" rel="noopener noreferrer">
+            <div class="p-num">02</div>
+            <div>
+              <div class="p-head">
+                <h3 class="p-title">DQN Material Cutting Optimization</h3>
+                <span class="p-cta">Paper
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                </span>
+              </div>
+              <p class="p-desc">
+                Published research on sustainable material cutting using Graph Neural Networks
+                and Deep Reinforcement Learning. Novel approach to waste reduction through
+                learned state representations.
+              </p>
+              <ul class="p-tags">
+                <li>Python</li><li>PyTorch</li><li>DQN</li><li>GNN</li>
+              </ul>
+            </div>
+          </a>
+
+          <a class="project reveal" style="--d:.12s" href="https://github.com/LynnUoE/Optimizing-Supply-Chain-Decision-Through-Reinforcement-Learning" target="_blank" rel="noopener noreferrer">
+            <div class="p-num">03</div>
+            <div>
+              <div class="p-head">
+                <h3 class="p-title">Supply Chain Optimization with Deep RL</h3>
+                <span class="p-cta">GitHub
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                </span>
+              </div>
+              <p class="p-desc">
+                Hybrid framework combining Deep Reinforcement Learning with Multi-Stage
+                Stochastic Programming for inventory management under demand uncertainty.
+                Implemented PPO and A3C algorithms, deployed on Google Cloud Platform.
+              </p>
+              <ul class="p-tags">
+                <li>Python</li><li>TensorFlow</li><li>PPO</li><li>A3C</li><li>GCP</li>
+              </ul>
+            </div>
+          </a>
+
+          <a class="project reveal" style="--d:.18s" href="https://github.com/LynnUoE/om-dissertation-implementation" target="_blank" rel="noopener noreferrer">
+            <div class="p-num">04</div>
+            <div>
+              <div class="p-head">
+                <h3 class="p-title">LLM-Based Academic Expert Discovery</h3>
+                <span class="p-cta">GitHub
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                </span>
+              </div>
+              <p class="p-desc">
+                Undergraduate dissertation project integrating GPT-4o with the OpenAlex
+                academic database to discover research expertise. Features semantic query
+                analysis, intelligent literature retrieval, and HDBSCAN-based topic clustering.
+              </p>
+              <ul class="p-tags">
+                <li>Python</li><li>Flask</li><li>GPT-4o</li><li>OpenAlex API</li><li>HDBSCAN</li>
+              </ul>
+            </div>
+          </a>
+
         </div>
       </div>
-      <p class="project-desc">
-        Full-stack event discovery app with real-time search and favorites.
-        React frontend with Express backend serving the Ticketmaster API,
-        deployed on Google Cloud Platform.
-      </p>
-      <div class="project-tags">
-        <span>React</span>
-        <span>Node.js</span>
-        <span>Express</span>
-        <span>MongoDB</span>
-        <span>GCP</span>
-      </div>
     </div>
-
-    <div class="project">
-      <div class="project-top">
-        <div class="project-title">DQN Material Cutting Optimization</div>
-        <div class="project-links">
-          <a href="https://doi.org/10.1051/itmconf/20257301002" target="_blank">Paper</a>
-        </div>
-      </div>
-      <p class="project-desc">
-        Published research on sustainable material cutting using Graph Neural Networks
-        and Deep Reinforcement Learning. Novel approach to waste reduction through
-        learned state representations.
-      </p>
-      <div class="project-tags">
-        <span>Python</span>
-        <span>PyTorch</span>
-        <span>DQN</span>
-        <span>GNN</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
-        <div class="project-title">Supply Chain Optimization with Deep RL</div>
-        <div class="project-links">
-          <a href="https://github.com/LynnUoE/Optimizing-Supply-Chain-Decision-Through-Reinforcement-Learning" target="_blank">GitHub</a>
-        </div>
-      </div>
-      <p class="project-desc">
-        Hybrid framework combining Deep Reinforcement Learning with Multi-Stage
-        Stochastic Programming for inventory management under demand uncertainty.
-        Implemented PPO and A3C algorithms, deployed on Google Cloud Platform.
-      </p>
-      <div class="project-tags">
-        <span>Python</span>
-        <span>TensorFlow</span>
-        <span>PPO</span>
-        <span>A3C</span>
-        <span>GCP</span>
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="project-top">
-        <div class="project-title">LLM-Based Academic Expert Discovery</div>
-        <div class="project-links">
-          <a href="https://github.com/LynnUoE/om-dissertation-implementation" target="_blank">GitHub</a>
-        </div>
-      </div>
-      <p class="project-desc">
-        Undergraduate dissertation project integrating GPT-4o with the OpenAlex
-        academic database to discover research expertise. Features semantic query
-        analysis, intelligent literature retrieval, and HDBSCAN-based topic clustering.
-      </p>
-      <div class="project-tags">
-        <span>Python</span>
-        <span>Flask</span>
-        <span>GPT-4o</span>
-        <span>OpenAlex API</span>
-        <span>HDBSCAN</span>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
   <div class="container">
-    <p>Linxuan Chen &middot; <a href="mailto:linxuanc@usc.edu">linxuanc@usc.edu</a> &middot; 2026</p>
+    <div class="sec-grid">
+      <div class="sec-rail reveal">
+        <div class="sec-label"><span class="sec-num">03</span> Contact</div>
+        <div class="sec-rail-line"></div>
+      </div>
+
+      <div class="sec-body">
+        <p class="contact-line reveal">
+          Get in touch &mdash;<br>
+          <a class="mail-link" href="mailto:linxuanc@usc.edu">linxuanc@usc.edu</a>
+        </p>
+        <div class="hero-links reveal" style="--d:.08s">
+          <a class="pill" href="https://github.com/LynnUoE" target="_blank" rel="noopener noreferrer">
+            GitHub
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+          </a>
+          <a class="pill" href="https://www.linkedin.com/in/lynn-chen-linxuan-uoe/" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div>&copy; 2026 Linxuan Chen</div>
+    <div class="footer-links">
+      <a href="mailto:linxuanc@usc.edu">linxuanc@usc.edu</a>
+      <a href="#top">Back to top</a>
+    </div>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+
+    /* ---- Theme toggle ---- */
+    var toggle = document.getElementById('themeToggle');
+    toggle.addEventListener('click', function () {
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var current = root.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    /* ---- Nav border + scroll progress ---- */
+    var nav = document.getElementById('nav');
+    var bar = document.getElementById('progress');
+    var ticking = false;
+
+    function onScroll() {
+      var y = window.scrollY || 0;
+      nav.classList.toggle('scrolled', y > 10);
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+
+    /* ---- Reveal on scroll ---- */
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      reveals.forEach(function (el) { io.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    /* ---- Active nav link ---- */
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+    var sections = links
+      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+
+    if ('IntersectionObserver' in window && sections.length) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (a) {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      sections.forEach(function (s) { spy.observe(s); });
+    }
+  })();
+</script>
 
 </body>
 </html>
