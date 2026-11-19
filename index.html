@@ -558,6 +558,28 @@
   .project:hover .p-cta { color: var(--accent); }
   .project:hover .p-cta svg { transform: translate(3px, -3px); }
 
+  /* Two links on one card. The card is a <div>; the primary link stretches
+     across it to keep the whole row clickable, the secondary sits on top. */
+  .p-ctas { display: inline-flex; align-items: baseline; gap: 0.9rem; flex: none; }
+  .p-ctas .p-cta { text-decoration: none; }
+  .p-cta-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0.5rem -1.25rem;
+    border-radius: 12px;
+  }
+  .p-ctas .p-cta-secondary { position: relative; z-index: 1; }
+  .p-ctas .p-cta:hover { color: var(--accent); }
+
+  .p-cta-live { color: var(--accent); }
+  .p-cta-live::before {
+    content: '';
+    width: 5px; height: 5px;
+    flex: none;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
   .p-desc {
     color: var(--text-2);
     font-size: 0.92rem;
@@ -882,25 +904,32 @@
             </div>
           </a>
 
-          <a class="project reveal" style="--d:.18s" href="https://github.com/LynnUoE/om-dissertation-implementation" target="_blank" rel="noopener noreferrer">
+          <div class="project reveal" style="--d:.18s">
             <div class="p-num">04</div>
             <div>
               <div class="p-head">
-                <h3 class="p-title">LLM-Based Academic Expert Discovery</h3>
-                <span class="p-cta">GitHub
-                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                <h3 class="p-title">LitFinder</h3>
+                <span class="p-ctas">
+                  <a class="p-cta p-cta-primary p-cta-live" href="https://3-13-52-122.sslip.io" target="_blank" rel="noopener noreferrer">Live
+                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                  </a>
+                  <a class="p-cta p-cta-secondary" href="https://github.com/LynnUoE/LitFinder" target="_blank" rel="noopener noreferrer">GitHub
+                    <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                  </a>
                 </span>
               </div>
               <p class="p-desc">
-                Undergraduate dissertation project integrating GPT-4o with the OpenAlex
-                academic database to discover research expertise. Features semantic query
-                analysis, intelligent literature retrieval, and HDBSCAN-based topic clustering.
+                LLM-powered literature search over OpenAlex's 300M+ scholarly works&mdash;describe
+                what you need in plain language. Semantic retrieval with citation expansion and a
+                cross-encoder reranker lifted nDCG@10 from 0.55 to 0.95 on a 32-query benchmark.
+                An agent mode plans its own searches through function calling, and the same tools
+                ship as an MCP server. Grew out of my Edinburgh dissertation, now deployed on AWS.
               </p>
               <ul class="p-tags">
-                <li>Python</li><li>Flask</li><li>GPT-4o</li><li>OpenAlex API</li><li>HDBSCAN</li>
+                <li>Python</li><li>Flask</li><li>OpenAlex API</li><li>MCP</li><li>Docker</li><li>AWS</li>
               </ul>
             </div>
-          </a>
+          </div>
 
         </div>
       </div>
