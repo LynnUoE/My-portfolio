@@ -470,6 +470,22 @@
   /* ---- Skills ------------------------------------------------- */
   .skills { margin-top: 3rem; }
   .skills-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+  .skill-groups { display: flex; flex-direction: column; gap: 1.15rem; }
+  .skill-group {
+    display: grid;
+    grid-template-columns: 128px minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+  .skill-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    padding-top: 0.45rem;
+  }
   .skill {
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.74rem;
@@ -787,6 +803,8 @@
     .p-num { padding-top: 0; }
     .p-head { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
     .edu-item { flex-direction: column; gap: 0.25rem; }
+    .skill-group { grid-template-columns: 1fr; gap: 0.5rem; }
+    .skill-label { padding-top: 0; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
   }
 
@@ -901,21 +919,73 @@
 
         <div class="skills reveal" style="--d:.12s">
           <div class="block-title">Toolkit</div>
-          <div class="skills-row">
-            <span class="skill">Java</span>
-            <span class="skill">Python</span>
-            <span class="skill">JavaScript</span>
-            <span class="skill">TypeScript</span>
-            <span class="skill">React</span>
-            <span class="skill">Node.js</span>
-            <span class="skill">Spring Boot</span>
-            <span class="skill">MySQL</span>
-            <span class="skill">MongoDB</span>
-            <span class="skill">GCP</span>
-            <span class="skill">Docker</span>
-            <span class="skill">Git</span>
-            <span class="skill">PyTorch</span>
-          </div>
+          <dl class="skill-groups">
+
+            <div class="skill-group">
+              <dt class="skill-label">Languages</dt>
+              <dd class="skills-row">
+                <span class="skill">Python</span>
+                <span class="skill">Java</span>
+                <span class="skill">TypeScript</span>
+                <span class="skill">Kotlin</span>
+                <span class="skill">C/C++</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Bash</span>
+              </dd>
+            </div>
+
+            <div class="skill-group">
+              <dt class="skill-label">LLMs &amp; Agents</dt>
+              <dd class="skills-row">
+                <span class="skill">OpenAI API</span>
+                <span class="skill">Function Calling</span>
+                <span class="skill">Structured Outputs</span>
+                <span class="skill">MCP</span>
+                <span class="skill">LLM-as-Judge</span>
+                <span class="skill">RAG</span>
+              </dd>
+            </div>
+
+            <div class="skill-group">
+              <dt class="skill-label">ML &amp; RL</dt>
+              <dd class="skills-row">
+                <span class="skill">PyTorch</span>
+                <span class="skill">TensorFlow</span>
+                <span class="skill">Stable-Baselines3</span>
+                <span class="skill">MuJoCo</span>
+                <span class="skill">PPO</span>
+                <span class="skill">DQN</span>
+                <span class="skill">GNN</span>
+              </dd>
+            </div>
+
+            <div class="skill-group">
+              <dt class="skill-label">Web &amp; Data</dt>
+              <dd class="skills-row">
+                <span class="skill">Flask</span>
+                <span class="skill">Node.js/Express</span>
+                <span class="skill">React</span>
+                <span class="skill">Spring Boot</span>
+                <span class="skill">REST APIs</span>
+                <span class="skill">MySQL</span>
+                <span class="skill">MongoDB</span>
+              </dd>
+            </div>
+
+            <div class="skill-group">
+              <dt class="skill-label">Infra &amp; Testing</dt>
+              <dd class="skills-row">
+                <span class="skill">Docker</span>
+                <span class="skill">AWS EC2</span>
+                <span class="skill">GCP</span>
+                <span class="skill">GitHub Actions</span>
+                <span class="skill">pytest</span>
+                <span class="skill">Linux</span>
+                <span class="skill">Git</span>
+              </dd>
+            </div>
+
+          </dl>
         </div>
       </div>
     </div>
