@@ -377,6 +377,96 @@
   }
   .pill:hover svg { transform: translate(2px, -2px); opacity: 1; }
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+    gap: 4.5rem;
+    align-items: center;
+  }
+
+  /* ---- Hero results panel (slope chart) ----------------------- */
+  .hero-panel { max-width: 420px; }
+  .panel-title {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.6rem;
+  }
+
+  .metric { margin-bottom: 1.6rem; }
+  .metric-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--text-3);
+    margin-bottom: 0.6rem;
+  }
+  .metric-delta { white-space: nowrap; color: var(--text-2); }
+  .metric-delta b { color: var(--accent); font-weight: 500; }
+
+  /* One shared 0-100 scale; only the two measured endpoints are drawn. */
+  .metric-track { position: relative; height: 10px; }
+  .metric-track::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 4.5px;
+    height: 1px;
+    background: var(--line);
+  }
+  .metric-fill {
+    position: absolute;
+    top: 4px; height: 2px;
+    border-radius: 1px;
+    left: var(--from);
+    width: calc(var(--to) - var(--from));
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    /* forwards, not backwards: the element's own state is scaleX(0), so a
+       backwards fill would snap the line back to nothing when it finishes. */
+    animation: fillIn 0.9s var(--ease) forwards;
+    animation-delay: calc(0.65s + var(--mi, 0) * 0.13s);
+  }
+  @keyframes fillIn { to { transform: scaleX(1); } }
+
+  .metric-dot {
+    position: absolute;
+    top: 1px;
+    width: 8px; height: 8px;
+    margin-left: -4px;
+    border-radius: 50%;
+  }
+  .metric-from {
+    left: var(--from);
+    background: var(--bg);
+    border: 1.5px solid var(--line-strong);
+  }
+  .metric-to {
+    left: var(--to);
+    background: var(--accent);
+    animation: dotIn 0.45s var(--ease) backwards;
+    animation-delay: calc(1.45s + var(--mi, 0) * 0.13s);
+  }
+  @keyframes dotIn { from { opacity: 0; transform: scale(0.3); } to { opacity: 1; transform: none; } }
+
+  .panel-note {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.6rem;
+    line-height: 1.75;
+    color: var(--text-3);
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--line);
+    margin-top: 1.9rem;
+  }
+
   .scroll-cue {
     margin-top: 5.5rem;
     display: flex;
@@ -865,16 +955,24 @@
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: none; }
   }
-  .hero > * { animation: riseIn 0.9s var(--ease) backwards; }
-  .hero > *:nth-child(1) { animation-delay: 0.05s; }
-  .hero > *:nth-child(2) { animation-delay: 0.14s; }
-  .hero > *:nth-child(3) { animation-delay: 0.23s; }
-  .hero > *:nth-child(4) { animation-delay: 0.32s; }
-  .hero > *:nth-child(5) { animation-delay: 0.44s; }
+  .hero-main > *, .hero-panel, .hero > .scroll-cue {
+    animation: riseIn 0.9s var(--ease) backwards;
+  }
+  .hero-main > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-main > *:nth-child(2) { animation-delay: 0.14s; }
+  .hero-main > *:nth-child(3) { animation-delay: 0.23s; }
+  .hero-main > *:nth-child(4) { animation-delay: 0.32s; }
+  .hero-panel { animation-delay: 0.40s; }
+  .hero > .scroll-cue { animation-delay: 0.52s; }
 
   /* ============================================================
      RESPONSIVE
      ============================================================ */
+  @media (max-width: 1040px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 3.2rem; align-items: start; }
+    .hero-panel { max-width: 460px; }
+  }
+
   @media (max-width: 860px) {
     .sec-grid { grid-template-columns: 1fr; gap: 1.8rem; }
     .sec-rail { position: static; }
@@ -934,6 +1032,9 @@
        an explicit resting state when motion is off. */
     .sec-rail-line, .edu::before { transform: none; }
     .skills.in .skill { animation: none; }
+    /* These carry long delays, which the duration override does not zero. */
+    .metric-fill { animation: none; transform: none; }
+    .metric-to { animation: none; }
   }
 </style>
 </head>
@@ -971,6 +1072,8 @@
 
 <!-- ===================== HERO ===================== -->
 <header class="hero" id="top">
+ <div class="hero-grid">
+  <div class="hero-main">
   <div class="status">
     <span class="status-dot" aria-hidden="true"></span>
     MS CS &middot; USC &middot; 2025&ndash;27
@@ -998,8 +1101,67 @@
       <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
     </a>
   </div>
+  </div>
 
-  <div class="scroll-cue">Scroll</div>
+  <aside class="hero-panel" aria-label="Selected measured results">
+    <div class="panel-title">Selected results</div>
+
+    <div class="metric" style="--mi:0">
+      <div class="metric-head">
+        <span>Retrieval &middot; nDCG@10</span>
+        <span class="metric-delta">0.55 &rarr; <b>0.95</b></span>
+      </div>
+      <div class="metric-track" style="--from:55%; --to:95%">
+        <span class="metric-fill"></span>
+        <span class="metric-dot metric-from"></span>
+        <span class="metric-dot metric-to"></span>
+      </div>
+    </div>
+
+    <div class="metric" style="--mi:1">
+      <div class="metric-head">
+        <span>Agent search &middot; nDCG@10</span>
+        <span class="metric-delta">0.20 &rarr; <b>0.56</b></span>
+      </div>
+      <div class="metric-track" style="--from:20%; --to:56%">
+        <span class="metric-fill"></span>
+        <span class="metric-dot metric-from"></span>
+        <span class="metric-dot metric-to"></span>
+      </div>
+    </div>
+
+    <div class="metric" style="--mi:2">
+      <div class="metric-head">
+        <span>45&deg; reorientation</span>
+        <span class="metric-delta">37&ndash;39% &rarr; <b>62&ndash;65%</b></span>
+      </div>
+      <div class="metric-track" style="--from:38%; --to:63.5%">
+        <span class="metric-fill"></span>
+        <span class="metric-dot metric-from"></span>
+        <span class="metric-dot metric-to"></span>
+      </div>
+    </div>
+
+    <div class="metric" style="--mi:3">
+      <div class="metric-head">
+        <span>90&deg; flip</span>
+        <span class="metric-delta">6&ndash;7% &rarr; <b>38%</b></span>
+      </div>
+      <div class="metric-track" style="--from:6.5%; --to:38%">
+        <span class="metric-fill"></span>
+        <span class="metric-dot metric-from"></span>
+        <span class="metric-dot metric-to"></span>
+      </div>
+    </div>
+
+    <p class="panel-note">
+      LitFinder: 32-query benchmark, 3,994 LLM-judged labels.
+      ORCA: 24 runs, paired two-seed controls.
+    </p>
+  </aside>
+ </div>
+
+ <div class="scroll-cue">Scroll</div>
 </header>
 
 <!-- ===================== ABOUT ===================== -->
