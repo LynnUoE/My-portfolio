@@ -504,6 +504,52 @@
     transform: translateY(-2px);
   }
 
+  /* ---- Experience --------------------------------------------- */
+  .exp-item {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+    transition: padding-left 0.4s var(--ease);
+  }
+  .exp-item:last-child { border-bottom: 1px solid var(--line); }
+  .exp-item:hover { padding-left: 0.6rem; }
+
+  .exp-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 0.55rem;
+  }
+  .exp-role {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.99rem;
+    letter-spacing: -0.012em;
+  }
+  .exp-now {
+    width: 6px; height: 6px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .exp-org { color: var(--text-2); font-size: 0.86rem; margin-top: 0.1rem; }
+  .exp-date {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    color: var(--text-3);
+    font-size: 0.74rem;
+    white-space: nowrap;
+    transition: color 0.3s var(--ease);
+  }
+  .exp-item:hover .exp-date { color: var(--accent); }
+  .exp-desc {
+    color: var(--text-2);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 58ch;
+  }
+
   /* ---- Publication -------------------------------------------- */
   .pub {
     border: 1px solid var(--line);
@@ -789,11 +835,30 @@
 
   @media (max-width: 600px) {
     .container, .nav-inner, .hero, .footer-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
-    .nav-inner { height: 60px; }
+    .nav-inner { height: 60px; gap: 0.6rem; }
     .brand-name { display: none; }
-    .nav-links { gap: 0.85rem; font-size: 0.78rem; }
-    .nav-links a { font-size: 0.78rem; }
-    .nav-right { gap: 0.9rem; }
+    .nav-right { gap: 0.7rem; flex: 1; min-width: 0; justify-content: flex-end; }
+    /* Five links do not fit at phone width: scroll them instead of wrapping,
+       with a fade on the right edge to show there is more. */
+    .nav-links {
+      flex: 1;
+      min-width: 0;
+      gap: 1rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 7px;
+      margin-bottom: -7px;
+      /* Trailing space so the last link can scroll clear of the fade. */
+      padding-right: 22px;
+      -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 20px), transparent 100%);
+              mask-image: linear-gradient(90deg, #000 calc(100% - 20px), transparent 100%);
+    }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links li { flex: none; }
+    .nav-links a { font-size: 0.8rem; }
+    .exp-head { flex-direction: column; gap: 0.3rem; }
     .pub { padding: 1.35rem; border-radius: 12px; }
     .hero { padding-top: 9rem; padding-bottom: 4rem; }
     .hero-desc { max-width: 100%; }
@@ -833,6 +898,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#publication">Publication</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -861,7 +927,8 @@
 
   <p class="hero-desc">
     Software engineer studying CS at <strong>USC</strong>. <strong>Edinburgh</strong> AI graduate.
-    I build full-stack applications and care about clean, thoughtful systems.
+    I build LLM agents and reinforcement learning systems&mdash;and the evaluation
+    that proves they work.
   </p>
 
   <div class="hero-links">
@@ -895,8 +962,10 @@
         <p class="lede reveal">
           I'm currently pursuing my <strong>MS in Computer Science</strong> at the University of
           Southern California. Before that, I completed my <strong>BSc in Artificial Intelligence</strong>
-          at the University of Edinburgh. My work spans backend systems, data pipelines, and modern
-          web applications&mdash;I enjoy turning complex problems into well-structured software.
+          at the University of Edinburgh. My work centres on <strong>LLM agents</strong> and
+          <strong>reinforcement learning</strong>&mdash;and on the evaluation that keeps them
+          honest: benchmarks, regression gates and failure diagnostics. I enjoy turning complex
+          problems into well-structured software.
         </p>
 
         <div class="reveal" style="--d:.06s">
@@ -992,12 +1061,74 @@
   </div>
 </section>
 
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-grid">
+      <div class="sec-rail reveal">
+        <div class="sec-label"><span class="sec-num">02</span> Experience</div>
+        <div class="sec-rail-line"></div>
+      </div>
+
+      <div class="sec-body">
+
+        <div class="exp-item reveal">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role"><span class="exp-now" aria-hidden="true"></span>AI Engineer Intern</div>
+              <div class="exp-org">Doryani &middot; Los Angeles, CA</div>
+            </div>
+            <div class="exp-date">Sep 2026 &ndash; Present</div>
+          </div>
+          <p class="exp-desc">
+            Leading technical discovery for a creative-services client&mdash;unifying six business
+            workflows into one architecture with a shared data model, API integrations and a
+            phased build plan. Building interactive prototypes so stakeholders can test the
+            proposed AI workflows before anything gets built.
+          </p>
+        </div>
+
+        <div class="exp-item reveal" style="--d:.06s">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">Software Engineering Intern</div>
+              <div class="exp-org">Fourseason Logistics &middot; Dongguan, China</div>
+            </div>
+            <div class="exp-date">Dec 2024 &ndash; Feb 2025</div>
+          </div>
+          <p class="exp-desc">
+            Built Java/Spring Boot and MySQL services for inbound and outbound inventory in a
+            Mercedes-Benz bonded warehouse, shipping 6+ REST endpoints that replaced a manual
+            ledger staff had been checking by hand.
+          </p>
+        </div>
+
+        <div class="exp-item reveal" style="--d:.12s">
+          <div class="exp-head">
+            <div>
+              <div class="exp-role">Data Engineering Intern</div>
+              <div class="exp-org">Zhongxinghua CPAs &middot; Guangzhou, China</div>
+            </div>
+            <div class="exp-date">Jun 2023 &ndash; Aug 2023</div>
+          </div>
+          <p class="exp-desc">
+            Cut a two-working-day manual reconciliation to under 15 minutes with a Python
+            pipeline (Pandas, NumPy) that cleans ~10,000 financial records and flags anomalies
+            for auditor review.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== PUBLICATION ===================== -->
 <section id="publication">
   <div class="container">
     <div class="sec-grid">
       <div class="sec-rail reveal">
-        <div class="sec-label"><span class="sec-num">02</span> Publication</div>
+        <div class="sec-label"><span class="sec-num">03</span> Publication</div>
         <div class="sec-rail-line"></div>
       </div>
 
@@ -1049,7 +1180,7 @@
   <div class="container">
     <div class="sec-grid">
       <div class="sec-rail reveal">
-        <div class="sec-label"><span class="sec-num">03</span> Projects</div>
+        <div class="sec-label"><span class="sec-num">04</span> Projects</div>
         <div class="sec-rail-line"></div>
       </div>
 
@@ -1134,7 +1265,7 @@
   <div class="container">
     <div class="sec-grid">
       <div class="sec-rail reveal">
-        <div class="sec-label"><span class="sec-num">04</span> Contact</div>
+        <div class="sec-label"><span class="sec-num">05</span> Contact</div>
         <div class="sec-rail-line"></div>
       </div>
 
