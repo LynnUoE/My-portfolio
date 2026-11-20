@@ -488,6 +488,93 @@
     transform: translateY(-2px);
   }
 
+  /* ---- Publication -------------------------------------------- */
+  .pub {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.9rem;
+    background: color-mix(in srgb, var(--surface) 55%, transparent);
+    transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .pub:hover { border-color: var(--line-strong); box-shadow: var(--shadow); }
+
+  .pub-meta {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 1rem;
+  }
+  .pub-venue { color: var(--accent); }
+  .pub-sep { opacity: 0.45; }
+
+  .pub-title {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.85rem;
+  }
+  .pub-title .pub-sub { color: var(--text-2); }
+
+  .pub-authors {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text-2);
+    margin-bottom: 1rem;
+  }
+  .pub-sole {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 0.08rem 0.5rem;
+  }
+
+  .pub-abstract {
+    color: var(--text-2);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 1.4rem;
+    max-width: 56ch;
+  }
+
+  .pub-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+  .pub-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-2);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+    transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+                background 0.3s var(--ease), transform 0.3s var(--ease);
+  }
+  .pub-link svg { width: 11px; height: 11px; transition: transform 0.35s var(--ease); }
+  .pub-link:hover {
+    color: var(--accent);
+    border-color: var(--line-strong);
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+  }
+  .pub-link:hover svg { transform: translate(2px, -2px); }
+  .pub-doi {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.66rem;
+    color: var(--text-3);
+    margin-left: 0.35rem;
+  }
+
   /* ---- Projects ----------------------------------------------- */
   .projects { border-top: 1px solid var(--line); }
 
@@ -688,8 +775,10 @@
     .container, .nav-inner, .hero, .footer-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
     .nav-inner { height: 60px; }
     .brand-name { display: none; }
-    .nav-links { gap: 1.1rem; }
-    .nav-right { gap: 1.1rem; }
+    .nav-links { gap: 0.85rem; font-size: 0.78rem; }
+    .nav-links a { font-size: 0.78rem; }
+    .nav-right { gap: 0.9rem; }
+    .pub { padding: 1.35rem; border-radius: 12px; }
     .hero { padding-top: 9rem; padding-bottom: 4rem; }
     .hero-desc { max-width: 100%; }
     .scroll-cue { margin-top: 3.5rem; }
@@ -726,6 +815,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#publication">Publication</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -832,80 +922,72 @@
   </div>
 </section>
 
+<!-- ===================== PUBLICATION ===================== -->
+<section id="publication">
+  <div class="container">
+    <div class="sec-grid">
+      <div class="sec-rail reveal">
+        <div class="sec-label"><span class="sec-num">02</span> Publication</div>
+        <div class="sec-rail-line"></div>
+      </div>
+
+      <div class="sec-body">
+        <article class="pub reveal">
+          <div class="pub-meta">
+            <span class="pub-venue">ITM Web of Conferences</span>
+            <span class="pub-sep">/</span>
+            <span>Vol. 73, 01002</span>
+            <span class="pub-sep">/</span>
+            <span>2025</span>
+          </div>
+
+          <h3 class="pub-title">
+            Sustainable Material Cutting Optimization Using Deep Q-Networks:
+            <span class="pub-sub">A Reinforcement Learning Approach for Resource Efficiency</span>
+          </h3>
+
+          <div class="pub-authors">
+            Linxuan Chen
+            <span class="pub-sole">Sole author</span>
+          </div>
+
+          <p class="pub-abstract">
+            Graph Neural Networks and Deep Q-Learning applied to sustainable material
+            cutting&mdash;a novel approach to waste reduction through learned state
+            representations.
+          </p>
+
+          <div class="pub-links">
+            <a class="pub-link" href="https://doi.org/10.1051/itmconf/20257301002" target="_blank" rel="noopener noreferrer">
+              Read paper
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+            </a>
+            <a class="pub-link" href="https://github.com/LynnUoE/gnn-dqn-cutting-stock" target="_blank" rel="noopener noreferrer">
+              Code
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+            </a>
+            <span class="pub-doi">10.1051/itmconf/20257301002</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== PROJECTS ===================== -->
 <section id="projects">
   <div class="container">
     <div class="sec-grid">
       <div class="sec-rail reveal">
-        <div class="sec-label"><span class="sec-num">02</span> Projects</div>
+        <div class="sec-label"><span class="sec-num">03</span> Projects</div>
         <div class="sec-rail-line"></div>
       </div>
 
       <div class="sec-body">
         <div class="projects">
 
-          <a class="project reveal" href="https://github.com/LynnUoE/event-around-mobile-app" target="_blank" rel="noopener noreferrer">
+          <div class="project reveal">
             <div class="p-num">01</div>
-            <div>
-              <div class="p-head">
-                <h3 class="p-title">Ticketmaster Event Search</h3>
-                <span class="p-cta">GitHub
-                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-                </span>
-              </div>
-              <p class="p-desc">
-                Full-stack event discovery app with real-time search and favorites.
-                React frontend with Express backend serving the Ticketmaster API,
-                deployed on Google Cloud Platform.
-              </p>
-              <ul class="p-tags">
-                <li>React</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>GCP</li>
-              </ul>
-            </div>
-          </a>
-
-          <a class="project reveal" style="--d:.06s" href="https://doi.org/10.1051/itmconf/20257301002" target="_blank" rel="noopener noreferrer">
-            <div class="p-num">02</div>
-            <div>
-              <div class="p-head">
-                <h3 class="p-title">DQN Material Cutting Optimization</h3>
-                <span class="p-cta">Paper
-                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-                </span>
-              </div>
-              <p class="p-desc">
-                Published research on sustainable material cutting using Graph Neural Networks
-                and Deep Reinforcement Learning. Novel approach to waste reduction through
-                learned state representations.
-              </p>
-              <ul class="p-tags">
-                <li>Python</li><li>PyTorch</li><li>DQN</li><li>GNN</li>
-              </ul>
-            </div>
-          </a>
-
-          <a class="project reveal" style="--d:.12s" href="https://github.com/LynnUoE/Optimizing-Supply-Chain-Decision-Through-Reinforcement-Learning" target="_blank" rel="noopener noreferrer">
-            <div class="p-num">03</div>
-            <div>
-              <div class="p-head">
-                <h3 class="p-title">Supply Chain Optimization with Deep RL</h3>
-                <span class="p-cta">GitHub
-                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
-                </span>
-              </div>
-              <p class="p-desc">
-                Hybrid framework combining Deep Reinforcement Learning with Multi-Stage
-                Stochastic Programming for inventory management under demand uncertainty.
-                Implemented PPO and A3C algorithms, deployed on Google Cloud Platform.
-              </p>
-              <ul class="p-tags">
-                <li>Python</li><li>TensorFlow</li><li>PPO</li><li>A3C</li><li>GCP</li>
-              </ul>
-            </div>
-          </a>
-
-          <div class="project reveal" style="--d:.18s">
-            <div class="p-num">04</div>
             <div>
               <div class="p-head">
                 <h3 class="p-title">LitFinder</h3>
@@ -931,6 +1013,46 @@
             </div>
           </div>
 
+          <a class="project reveal" style="--d:.06s" href="https://github.com/LynnUoE/event-around-mobile-app" target="_blank" rel="noopener noreferrer">
+            <div class="p-num">02</div>
+            <div>
+              <div class="p-head">
+                <h3 class="p-title">Ticketmaster Event Search</h3>
+                <span class="p-cta">GitHub
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                </span>
+              </div>
+              <p class="p-desc">
+                Full-stack event discovery app with real-time search and favorites.
+                React frontend with Express backend serving the Ticketmaster API,
+                deployed on Google Cloud Platform.
+              </p>
+              <ul class="p-tags">
+                <li>React</li><li>Node.js</li><li>Express</li><li>MongoDB</li><li>GCP</li>
+              </ul>
+            </div>
+          </a>
+
+          <a class="project reveal" style="--d:.12s" href="https://github.com/LynnUoE/Optimizing-Supply-Chain-Decision-Through-Reinforcement-Learning" target="_blank" rel="noopener noreferrer">
+            <div class="p-num">03</div>
+            <div>
+              <div class="p-head">
+                <h3 class="p-title">Supply Chain Optimization with Deep RL</h3>
+                <span class="p-cta">GitHub
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg>
+                </span>
+              </div>
+              <p class="p-desc">
+                Hybrid framework combining Deep Reinforcement Learning with Multi-Stage
+                Stochastic Programming for inventory management under demand uncertainty.
+                Implemented PPO and A3C algorithms, deployed on Google Cloud Platform.
+              </p>
+              <ul class="p-tags">
+                <li>Python</li><li>TensorFlow</li><li>PPO</li><li>A3C</li><li>GCP</li>
+              </ul>
+            </div>
+          </a>
+
         </div>
       </div>
     </div>
@@ -942,7 +1064,7 @@
   <div class="container">
     <div class="sec-grid">
       <div class="sec-rail reveal">
-        <div class="sec-label"><span class="sec-num">03</span> Contact</div>
+        <div class="sec-label"><span class="sec-num">04</span> Contact</div>
         <div class="sec-rail-line"></div>
       </div>
 
