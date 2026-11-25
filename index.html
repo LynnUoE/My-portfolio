@@ -1196,7 +1196,7 @@
           <div class="edu-item">
             <div>
               <div class="edu-school">University of Edinburgh</div>
-              <div class="edu-degree">BSc Artificial Intelligence</div>
+              <div class="edu-degree">BSc (Hons) Artificial Intelligence &middot; GPA 3.5/4.0</div>
             </div>
             <div class="edu-date">2021 &ndash; 2025</div>
           </div>
@@ -1227,8 +1227,10 @@
                 <span class="skill">Function Calling</span>
                 <span class="skill">Structured Outputs</span>
                 <span class="skill">MCP</span>
+                <span class="skill">Claude API</span>
                 <span class="skill">LLM-as-Judge</span>
                 <span class="skill">RAG</span>
+                <span class="skill">Claude Code</span>
               </dd>
             </div>
 
@@ -1242,6 +1244,9 @@
                 <span class="skill">PPO</span>
                 <span class="skill">DQN</span>
                 <span class="skill">GNN</span>
+                <span class="skill">Deep Learning</span>
+                <span class="skill">Imitation Learning</span>
+                <span class="skill">NLP</span>
               </dd>
             </div>
 
@@ -1255,6 +1260,10 @@
                 <span class="skill">REST APIs</span>
                 <span class="skill">MySQL</span>
                 <span class="skill">MongoDB</span>
+                <span class="skill">Pydantic</span>
+                <span class="skill">JSON</span>
+                <span class="skill">Pandas</span>
+                <span class="skill">NumPy</span>
               </dd>
             </div>
 
@@ -1298,10 +1307,15 @@
             <div class="exp-date">Sep 2026 &ndash; Present</div>
           </div>
           <p class="exp-desc">
-            Leading technical discovery for a creative-services client&mdash;unifying six business
-            workflows into one architecture with a shared data model, API integrations and a
-            phased build plan. Building interactive prototypes so stakeholders can test the
-            proposed AI workflows before anything gets built.
+            Building CentryLab, which compiles a company's pricing rules into a deterministic
+            simulation that measures unpaid service. I own the LLM intake pipeline&mdash;Pydantic
+            and JSON Schema structured outputs over the OpenAI and Anthropic Claude APIs&mdash;which
+            extracts each rule with its source quote and turns anything the pricing pages leave
+            unstated into a question rather than a guess. Constraining the model to configure a
+            typed library of 34 mechanism modules as schema-validated data, never free-form code,
+            is what made the output trustworthy: freehand worlds passed every schema check yet
+            0 of 20 booked the right money, while constrained assembly matched independently
+            computed invoices in both live runs.
           </p>
         </div>
 
@@ -1423,10 +1437,13 @@
                 what you need in plain language. Semantic retrieval with citation expansion and a
                 cross-encoder reranker lifted nDCG@10 from 0.55 to 0.95 on a 32-query benchmark.
                 An agent mode plans its own searches through function calling, and the same tools
-                ship as an MCP server. Grew out of my Edinburgh dissertation, now deployed on AWS.
+                ship as an MCP server. Grew out of my Edinburgh dissertation and now runs on AWS
+                EC2 behind a GitHub Actions pipeline with 90+ tests, an image health check and a
+                live-endpoint check; shipping it meant fixing LLM calls with no timeout and a
+                reranker crash under concurrency, and adding thread-safe rate limiting.
               </p>
               <ul class="p-tags">
-                <li>Python</li><li>Flask</li><li>OpenAlex API</li><li>MCP</li><li>Docker</li><li>AWS</li>
+                <li>Python</li><li>Flask</li><li>OpenAlex API</li><li>MCP</li><li>Docker</li><li>AWS</li><li>GitHub Actions</li>
               </ul>
             </div>
           </div>
@@ -1444,11 +1461,14 @@
                 A deterministic simulation of a company's own pricing and subscription rules.
                 It runs a population of customers, the AI agents acting for them, and abusive
                 agents through the rules as written, then reports who a change helps, who it
-                hurts, and where service is delivered without payment. Built as a Software
+                hurts, and where service is delivered without payment. I build the LLM intake
+                pipeline that turns a pricing page into a typed, schema-validated world, and the
+                failure analysis that reads run logs&mdash;a cost estimate counting bytes as tokens,
+                ~24&times; too high, was quietly halting live runs early. Built as a Software
                 Engineer Intern at Doryani.
               </p>
               <ul class="p-tags">
-                <li>Simulation</li><li>Pricing &amp; Billing</li><li>Business-Logic Abuse</li><li>Deterministic Engine</li>
+                <li>Python</li><li>OpenAI API</li><li>Claude API</li><li>Pydantic</li><li>JSON Schema</li><li>Simulation</li>
               </ul>
             </div>
           </a>
